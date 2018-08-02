@@ -15,6 +15,8 @@ import { Attack } from './../src/spells.js';
 import { Defend } from './../src/spells.js';
 import { Magic } from './../src/spells.js';
 import { Battle } from './../src/battle.js';
+import { Area } from './../src/areas.js';
+import { Forest } from './../src/areas.js';
 import $ from 'jquery';
 import './styles.css';
 import 'bootstrap';
@@ -26,6 +28,7 @@ let userCharacter;
 let userFinal = [];
 let enemyMonster;
 let thisBattle;
+let gameArea;
 let newAttack = new Attack();
 let newDefend = new Defend();
 let newMagic = new Magic();
@@ -34,6 +37,8 @@ $(document).ready(function(){
   $("#start").hide();
   $(".battle-zone").hide();
   $("#monster-turn").hide();
+  $("#forest-select").hide();
+  $("#character-creation").show();
   $("#character-creation").submit(function(event){
     event.preventDefault();
     let userName = $('#name').val();
@@ -123,6 +128,7 @@ $(document).ready(function(){
         $("#monster-turn").hide();
         $("#monster-result").hide();
         $("#first-b-one").hide();
+        $("#forest-select").show();
       }
   })
   $("#monster-turn").click(function(event){
@@ -153,5 +159,11 @@ $(document).ready(function(){
     $("#monster-turn").hide();
     $("#user-action").show();
     $("#user-set-action").show();
+  })
+  $("#forest-select").click(function(event){
+    event.preventDefault();
+    gameArea = new Forest("Forest of Beginning");
+    userCharacter.increaseEncounterChance(gameArea);
+    $("#area-description").text("You have stepped into the first area of the game. The forest of beginning");
   })
 })
