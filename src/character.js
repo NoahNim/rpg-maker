@@ -9,6 +9,7 @@ export class Character {
     this.experience = 0;
     this.spells = [];
     this.inventory = [];
+    this.chanceToBattle = 0;
   }
   levelUp() {
     this.level += 1;
@@ -40,6 +41,9 @@ export class Character {
     this.hp -= item.hpMod;
     this.mana -= item.manaMod;
     this.stamina -= item.staminaMod
+  }
+  increaseEncounterChance(chance){
+    this.chanceToBattle += chance.areaEnemyDensity;
   }
 }
 

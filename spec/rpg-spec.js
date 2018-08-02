@@ -15,6 +15,8 @@ import { Attack } from './../src/spells.js';
 import { Defend } from './../src/spells.js';
 import { Magic } from './../src/spells.js';
 import { Battle } from './../src/battle.js';
+import { Area } from './../src/areas.js';
+import { Forest } from './../src/areas.js';
 
 describe('Character', function() {
   let reusableCharacter;
@@ -102,6 +104,13 @@ describe('Character', function() {
     newWizard.addItem(otherStaff);
     console.log(newWizard.inventory);
     expect(newWizard.inventory.length).toEqual(5);
+  });
+  it('should test if areas increase enemy encounter chance', function(){
+    let newWizard = new Wizard("Leo", "Drow");
+    let forestTest = new Forest("Forest of Testing");
+
+    newWizard.increaseEncounterChance(forestTest);
+    expect(newWizard.chanceToBattle).toEqual(1);
   });
 });
 
