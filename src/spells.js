@@ -1,6 +1,6 @@
 export class Spells {
   constructor(){
-    this.hp= 0;
+    this.hp = 0;
   }
 }
 
