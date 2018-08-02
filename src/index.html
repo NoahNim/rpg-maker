@@ -5,43 +5,46 @@
     <title>An RPG</title>
   </head>
   <body>
-    <form class="character" id="character-creation">
-      <label for="name">Name:</label>
-      <input type="text" name="name" id="name">
-      <label for="race">Race:</label>
-      <select class="race" name="race" id="race">
-        <option value="human">Human</option>
-        <option value="elf">Elf</option>
-        <option value="orc">Orc</option>
-        <option value="hobbit">Hobbit</option>
-        <option value="dwarf">Dwarf</option>
-        <option value="undead">Undead</option>
-      </select>
-      <select class="class" name="class" id="class">
-        <option value=1>Warrior</option>
-        <option value=2>Wizard</option>
-        <option value=3>Thief</option>
-        <option value=4>Priest</option>
-      </select>
-      <button type="submit" name="button">Create</button>
-    </form>
-    <p><span id="hero_name"></span></p>
-    <button type="button" name="start" id="start">Start Game</button>
-    <div class="first-battle">
-      <p id="first-b-one"></p>
+    <div class="container text-center">
+      <div class="mt-5 border-primary rounded">
+        <form class="character" id="character-creation">
+          <label for="name">Name:</label>
+          <input type="text" name="name" id="name">
+          <label for="race">Race:</label>
+          <select class="race" name="race" id="race">
+            <option value="human">Human</option>
+            <option value="elf">Elf</option>
+            <option value="orc">Orc</option>
+            <option value="hobbit">Hobbit</option>
+            <option value="dwarf">Dwarf</option>
+            <option value="undead">Undead</option>
+          </select>
+          <select class="class" name="class" id="class">
+            <option value=1>Warrior</option>
+            <option value=2>Wizard</option>
+            <option value=3>Thief</option>
+            <option value=4>Priest</option>
+          </select>
+          <button type="submit" name="button">Create</button>
+        </form>
+        <p><span id="hero_name"></span></p>
+      </div>
+      <button type="button" name="start" id="start">Start Game</button>
+      <div class="first-battle">
+        <p id="first-b-one"></p>
+      </div>
+      <div class="battle-zone">
+        <form class="battle-zone" id="battle">
+          <select name="user-action" id="user-action">
+            <option value=1>Attack</option>
+            <option value=2>Magic</option>
+          </select>
+          <button type="submit" name="button" id="user-set-action">Go!</button>
+        </form>
+        <button type="button" name="button" id="monster-turn">Monster Turn</button>
+      </div>
+      <p id="user-result"></p>
+      <p id="monster-result"></p>
     </div>
-    <div class="battle-zone">
-      <form class="battle-zone" id="battle">
-        <select name="user-action" id="user-action">
-          <option value=1>Attack</option>
-          <option value=2>Magic</option>
-        </select>
-        <button type="submit" name="button" id="user-set-action">Go!</button>
-      </form>
-      <button type="button" name="button" id="monster-turn">Monster Turn</button>
-    </div>
-    <p id="user-result"></p>
-    <p id="monster-result"></p>
-
   </body>
 </html>
