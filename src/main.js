@@ -25,6 +25,7 @@ let userRace;
 let userCharacter;
 let userFinal = [];
 let enemyMonster;
+let thisBattle;
 let newAttack = new Attack();
 let newDefend = new Defend();
 let newMagic = new Magic();
@@ -32,6 +33,7 @@ let newMagic = new Magic();
 $(document).ready(function(){
   $("#start").hide();
   $(".battle-zone").hide();
+  $("#monster-turn").hide();
   $("#character-creation").submit(function(event){
     event.preventDefault();
     let userName = $('#name').val();
@@ -82,23 +84,40 @@ $(document).ready(function(){
     $("#start").hide();
     enemyMonster = new Monster('Zugee', 'Goblin');
     $("#first-b-one").text("You have come across " + enemyMonster.name + " the " + enemyMonster.race + " prepare to fight!");
+    $("#monster-turn").hide();
     $(".battle-zone").show();
+    thisBattle = new Battle(userCharacter, enemyMonster);
   })
   $("#battle").submit(function(event){
     event.preventDefault();
-    let thisBattle = new Battle(userCharacter, enemyMonster);
-    if ($("#user-action").val() == 1){
-      console.log($("#user-action").val());
-      thisBattle.characterOneAction(newAttack);
-      $("#user-result").text("You attacked!" + " and now " + enemyMonster.name + "s health is at " + enemyMonster.hp);
-    } // else if ($("#user-action").val() == 2) {
-    //   console.log($("user-action").val());
-    //   thisBattle.characterOneAction(newDefend);
-    //   $("#user-result").text("You defended!");}
-      else if ($("#user-action").val() == 3) {
-      console.log($("#user-action").val());
-      thisBattle.characterOneAction(newMagic);
-      $("#user-result").text("You used magic!" + " and now " + enemyMonster.name + "s health is at " + enemyMonster.hp);
-    }
+      if ($("#user-action").val() == 1){
+        console.log($("#user-action").val());
+        thisBattle.characterOneAction(newAttack);
+        $("#user-result").text("You attacked!" + " and now " + enemyMonster.name + "s health is at " + enemyMonster.hp);
+        $("#user-action").hide();
+        $("#user-set-action").hide();
+        $("#monster-turn").show();
+      } // else if ($("#user-action").val() == 2) {
+      //   console.log($("user-action").val());
+      //   thisBattle.characterOneAction(newDefend);
+      //   $("#user-result").text("You defended!");}
+        else if ($("#user-action").val() == 3) {
+        console.log($("#user-action").val());
+        thisBattle.characterOneAction(newMagic);
+        $("#user-action").hide();
+        $("#user-set-action").hide();
+        $("#monster-turn").show();
+        $("#user-result").text("You used magic!" + " and now " + enemyMonster.name + "s health is at " + enemyMonster.hp);
+      }
+  })
+  $("#monster-turn").click(function(event){
+    event.preventDefault();
+    console.log("Monster went!");
+    console.log(userCharacter.hp);
+    thisBattle.characterTwoAction(newAttack);
+    $("#monster-result").text(enemyMonster.name + " attacked you! You now have " + userCharacter.hp + " health!");
+    $("#monster-turn").hide();
+    $("#user-action").show();
+    $("#user-set-action").show();
   })
 })
